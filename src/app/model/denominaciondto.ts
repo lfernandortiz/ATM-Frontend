@@ -4,5 +4,5 @@ export class DenominacionDTO {
 
     denominacion: Denominacion;
     cantidad: number;
-    fechatx: string;
+    fechaTx: string;
 }

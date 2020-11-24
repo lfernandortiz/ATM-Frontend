@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Denominacion } from '../model/denominacion';
+import { DenominacionDTO } from '../model/denominaciondto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class DenominacionService {
   }
 
 
-  registrar(Denominacion: Denominacion) {
-    return this.http.post(this.url, Denominacion);
+  registrar(denominacionDTO: DenominacionDTO) {
+    return this.http.post(this.url, denominacionDTO);
   }
 
 
