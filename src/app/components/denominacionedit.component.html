@@ -18,12 +18,12 @@
                         <div class="form-group row">
                             <label class="col-2 col-form-label">Denominación</label>
                             <div class="col-8">                            
-                                <input class="form-control" type="text" placeholder="Denominación" formControlName="denominacion"
+                                <input class="form-control" type="number" placeholder="Denominación" formControlName="denominacion"
                                     [ngClass]="{'is-invalid': !formDenominaciones.get('denominacion').valid && formDenominaciones.get('denominacion').touched}">
-                                <div *ngIf="formDenominaciones.get('denominacion').errors?.required">
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.required" class="invalid-feedback">
                                     Este campo es requerido
                                 </div>
-                                <div *ngIf="formDenominaciones.get('denominacion').errors?.minlength">
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.noEntero" class="invalid-feedback">
                                     Debe ser un valor entero, No Decimales.
                                 </div>                           
                             </div>
@@ -31,12 +31,12 @@
                         <div class="form-group row">
                             <label class="col-2 col-form-label">Cantidad</label>
                             <div class="col-8">                            
-                                <input class="form-control" type="text" placeholder="Cantidad" formControlName="denominacion"
-                                    [ngClass]="{'is-invalid': !formDenominaciones.get('denominacion').valid && formDenominaciones.get('denominacion').touched}">
-                                <div *ngIf="formDenominaciones.get('denominacion').errors?.required">
+                                <input class="form-control" type="number" placeholder="Cantidad" formControlName="cantidad"
+                                    [ngClass]="{'is-invalid': !formDenominaciones.get('cantidad').valid && formDenominaciones.get('cantidad').touched}">
+                                <div *ngIf="formDenominaciones.get('cantidad').errors?.required" class="invalid-feedback">
                                     Este campo es requerido
                                 </div>
-                                <div *ngIf="formDenominaciones.get('denominacion').errors?.minlength">
+                                <div *ngIf="formDenominaciones.get('cantidad').errors?.noEntero" class="invalid-feedback">
                                     Debe ser un valor entero, No Decimales.
                                 </div>                           
                             </div>
@@ -48,7 +48,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">&nbsp;</label>
                         <div class="input-group col-md-8">
-                            <button type="submit" class="btn btn-outline-primary">
+                            <button type="submit" class="btn btn-outline-primary" [disabled]="formDenominaciones.invalid">
                                 Guardar
                             </button>
                         </div>
@@ -97,3 +97,7 @@
     </div>
 </div>
 
+
+{{formDenominaciones.valid}}
+<br>
+{{formDenominaciones.status}}
