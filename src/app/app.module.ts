@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DenominacioneditComponent } from './components/denominacionedit.component';
 import { AtmComponent } from './components/atm.component';
 import { HomeComponent } from './components/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { HomeComponent } from './components/home.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

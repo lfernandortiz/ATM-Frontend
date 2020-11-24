@@ -1,1 +1,99 @@
-<p>denominacionedit works!</p>
+
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 mt-5">
+            
+
+            <a [routerLink]="[ '/home']" class="btn btn-outline-primary mb-5">Regresar</a>
+
+            <div class="border border border-secondary rounded p-4"> 
+                <h4 >Carga de Efectivo en Cajero</h4>
+                <hr>
+
+                
+                <form [formGroup]="formDenominaciones" (ngSubmit)="guardarDenominacion()" novalidate>
+                
+                    <div >
+                
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">Denominación</label>
+                            <div class="col-8">                            
+                                <input class="form-control" type="text" placeholder="Denominación" formControlName="denominacion"
+                                    [ngClass]="{'is-invalid': !formDenominaciones.get('denominacion').valid && formDenominaciones.get('denominacion').touched}">
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.required">
+                                    Este campo es requerido
+                                </div>
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.minlength">
+                                    Debe ser un valor entero, No Decimales.
+                                </div>                           
+                            </div>
+                        </div>       
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">Cantidad</label>
+                            <div class="col-8">                            
+                                <input class="form-control" type="text" placeholder="Cantidad" formControlName="denominacion"
+                                    [ngClass]="{'is-invalid': !formDenominaciones.get('denominacion').valid && formDenominaciones.get('denominacion').touched}">
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.required">
+                                    Este campo es requerido
+                                </div>
+                                <div *ngIf="formDenominaciones.get('denominacion').errors?.minlength">
+                                    Debe ser un valor entero, No Decimales.
+                                </div>                           
+                            </div>
+                        </div>       
+                
+                    </div>
+                
+                
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">&nbsp;</label>
+                        <div class="input-group col-md-8">
+                            <button type="submit" class="btn btn-outline-primary">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                
+                    
+                
+                </form>
+                
+            </div>
+            <div class="border border border-secondary rounded p-4 mt-5"> 
+                <h2> Inventario de Efectivo </h2>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
