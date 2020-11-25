@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Denominacion } from '../model/denominacion';
 import { DenominacionDTO } from '../model/denominaciondto';
+import { ListDenominacionDTO } from '../model/listdenominaciondto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class DenominacionService {
 
   listar() {
     return this.http.get<Denominacion[]>(this.url);
+  }
+
+  listarDetalleDenominacion() {
+    return this.http.get<ListDenominacionDTO[]>(`${this.url}/listardetalledenominaciones`);
   }
 
 

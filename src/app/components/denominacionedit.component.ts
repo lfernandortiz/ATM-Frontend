@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Observable } from 'rxjs';
 import { Denominacion } from '../model/denominacion';
 import { DenominacionDTO } from '../model/denominaciondto';
+import { ListDenominacionDTO } from '../model/listdenominaciondto';
 import { DenominacionService } from '../service/denominacion.service';
 import { ValidadoresService } from '../service/validadores.service';
 
@@ -17,7 +18,7 @@ export class DenominacioneditComponent implements OnInit {
   formDenominaciones: FormGroup;
   aviso: boolean = false;
 
-  listDenominacion: DenominacionDTO[] = [];
+  listDenominacion: ListDenominacionDTO[] = [];
 
   constructor(private fb: FormBuilder,
     private _denominacionService: DenominacionService,
@@ -62,6 +63,8 @@ export class DenominacioneditComponent implements OnInit {
       }, 3500);
 
       //refresco la tabla de inventario
+
+      this.listarDenominaciones();
     })
 
 
@@ -70,6 +73,10 @@ export class DenominacioneditComponent implements OnInit {
 
 
   listarDenominaciones() {
+
+    this._denominacionService.listarDetalleDenominacion().subscribe((data) => {
+      this.listDenominacion = data;
+    });
 
   }
 
