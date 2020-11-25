@@ -43,7 +43,7 @@ export class AtmComponent implements OnInit {
     this._retiroService.retiroDinero(valorRetiro).subscribe((data: ListDenominacionDTO[]) => {
       console.log(data)
       data.forEach(element => {
-        this.billetesEntregados += ` ${element.denominacion} ( ${element.total} ) `;
+        this.billetesEntregados += ` ${element.total} (${element.denominacion.toLocaleString()}) `;
       });
       this.txExitosa = true;
 
@@ -62,6 +62,7 @@ export class AtmComponent implements OnInit {
 
 
   reset() {
+    this.billetesEntregados = '';
     this.mensajeError = '';
     this.errorSaldo = false;
     this.txExitosa = false;
