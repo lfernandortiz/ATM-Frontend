@@ -17,6 +17,8 @@ export class DenominacioneditComponent implements OnInit {
   formDenominaciones: FormGroup;
   aviso: boolean = false;
 
+  listDenominacion: DenominacionDTO[] = [];
+
   constructor(private fb: FormBuilder,
     private _denominacionService: DenominacionService,
     private _validadores: ValidadoresService) { }
@@ -27,6 +29,10 @@ export class DenominacioneditComponent implements OnInit {
       valorDescripcion: [null, [Validators.required, this._validadores.esEntero]],
       cantidad: [null, [Validators.required, this._validadores.esEntero]],
     });
+
+
+    //inicializa la tabla de todas las denominaciones disponibles
+    this.listarDenominaciones();
 
   }
 
@@ -61,6 +67,11 @@ export class DenominacioneditComponent implements OnInit {
 
   }
 
+
+
+  listarDenominaciones() {
+
+  }
 
 
 
