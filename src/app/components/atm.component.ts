@@ -38,9 +38,9 @@ export class AtmComponent implements OnInit {
 
     this.reset();
 
-    let valorRetiro = this.formAtm.get('valorRetiro').value;
+    this.valorSolicitado = this.formAtm.get('valorRetiro').value;
 
-    this._retiroService.retiroDinero(valorRetiro).subscribe((data: ListDenominacionDTO[]) => {
+    this._retiroService.retiroDinero(this.valorSolicitado).subscribe((data: ListDenominacionDTO[]) => {
       console.log(data)
       data.forEach(element => {
         this.billetesEntregados += ` ${element.total} (${element.denominacion.toLocaleString()}) `;
@@ -63,6 +63,7 @@ export class AtmComponent implements OnInit {
 
   reset() {
     this.billetesEntregados = '';
+    this.valorSolicitado = null;
     this.mensajeError = '';
     this.errorSaldo = false;
     this.txExitosa = false;
