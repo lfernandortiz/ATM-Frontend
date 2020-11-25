@@ -21,10 +21,20 @@ export class ValidadoresService {
   }
 
 
+  multiploDeMil(control: FormControl): { [s: string]: boolean } {
+    if (control.value % 1000 != 0) {
+      return {
+        noMil: true
+      }
+    }
+
+    return null;
+
+  }
 
 
   /**
-   * Convierte una fechta en formado ISODATE
+   * Convierte una fechta en formado ISODATE 
    * yyy-mm-ddTHH:mm:ss
    * @param date 
    */

@@ -27,7 +27,7 @@ export class DenominacioneditComponent implements OnInit {
   ngOnInit() {
     this.formDenominaciones = this.fb.group({
       idDenominacion: [0],
-      valorDescripcion: [null, [Validators.required, this._validadores.esEntero]],
+      valorDescripcion: [null, [Validators.required, this._validadores.esEntero, this._validadores.multiploDeMil]],
       cantidad: [null, [Validators.required, this._validadores.esEntero]],
     });
 
@@ -62,8 +62,11 @@ export class DenominacioneditComponent implements OnInit {
         this.aviso = false;
       }, 3500);
 
-      //refresco la tabla de inventario
 
+      //limpia el form
+      this.formDenominaciones.reset();
+
+      //refresco la tabla de inventario
       this.listarDenominaciones();
     })
 

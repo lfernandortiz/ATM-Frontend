@@ -1,10 +1,10 @@
 
-<div class="container-fluid">
+<div class="container-fluid animated fadeIn fast">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-md-6 mt-5">
             
 
-            <a [routerLink]="[ '/home']" class="btn btn-outline-primary mb-5">Regresar</a>
+            <a [routerLink]="[ '/home']" class="btn btn-outline-danger mb-5">Regresar</a>
 
             <div class="border border border-secondary rounded p-4"> 
                 <h4 >Carga de Efectivo en Cajero</h4>
@@ -34,6 +34,9 @@
                                 </div> 
                                 <div *ngIf="formDenominaciones.get('valorDescripcion').errors?.noEntero" class="invalid-feedback">
                                     Debe ser un valor entero, No Decimales.
+                                </div>  
+                                <div *ngIf="formDenominaciones.get('valorDescripcion').errors?.noMil" class="invalid-feedback">
+                                    Debe ser un valor Multiplo de Mil $1.000 .
                                 </div>                           
                             </div>
                         </div>       
