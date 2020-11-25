@@ -8,30 +8,36 @@
                 <h4 >ATM</h4>
                 <hr>
 
-                <div class="alert alert-success" role="alert" *ngIf="aviso">
-                    ¡Carga de efectivo hecha con exito!
+                <div class="alert alert-success text-center" role="alert" *ngIf="txExitosa">
+                    <p>Valor solicitado {{ valorSolicitado | number}}</p>
+                    <p>Billetes entregados: {{billetesEntregados}}</p>
                  </div>
+
+                 <div class="alert alert-danger" role="alert" *ngIf="errorSaldo">
+                    {{mensajeError}}
+                  </div>
+                  
                 
-                <form [formGroup]="formAtm" (ngSubmit)="guardarDenominacion()" novalidate>
+                <form [formGroup]="formAtm" (ngSubmit)="retiro()" novalidate>
                 
                     <div >  
                         <div class="form-group row">
                             <label class="col-2 col-form-label">Valor a retirar</label>
                             <div class="col-8">                            
                                 <input class="form-control" type="number" placeholder="Valor a Retirar" formControlName="valorRetiro"
-                                    [ngClass]="{'is-invalid': !formAtm.get('valorDescripcion').valid && formAtm.get('valorDescripcion').touched}">
-                                <div *ngIf="formAtm.get('valorDescripcion').errors?.required" class="invalid-feedback">
-                                    Este campo es requerido
-                                </div> 
-                                <div *ngIf="formAtm.get('valorDescripcion').errors?.noEntero" class="invalid-feedback">
-                                    Debe ser un valor entero, No Decimales.
-                                </div>                           
+                                    [ngClass]="{'is-invalid': !formAtm.get('valorRetiro').valid && formAtm.get('valorRetiro').touched}">
+                                    <div *ngIf="formAtm.get('valorRetiro').errors?.required" class="invalid-feedback">
+                                        Este campo es requerido
+                                    </div> 
+                                    <div *ngIf="formAtm.get('valorRetiro').errors?.noEntero" class="invalid-feedback">
+                                        Debe ser un valor entero, No Decimales.
+                                    </div>  
+                                    <div *ngIf="formAtm.get('valorRetiro').errors?.noMil" class="invalid-feedback">
+                                        Debe ser un valor Multiplo de Mil $1.000 .
+                                    </div>                               
                             </div>
-                        </div>       
-                            
-                
-                    </div>
-                
+                        </div>   
+                    </div>               
                 
                     <div class="form-group row">
                         <label class="col-2 col-form-label">&nbsp;</label>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ListDenominacionDTO } from '../model/listdenominaciondto';
+import { RetiroService } from '../service/retiro.service';
 import { ValidadoresService } from '../service/validadores.service';
 
 @Component({
@@ -10,9 +12,16 @@ import { ValidadoresService } from '../service/validadores.service';
 export class AtmComponent implements OnInit {
 
   formAtm: FormGroup;
+  errorSaldo: boolean = false;
+  txExitosa: boolean = false;
+  mensajeError: string;
+  billetesEntregados: string = '';
+  valorSolicitado: number;
+
 
   constructor(private fb: FormBuilder,
-    private _validadores: ValidadoresService) { }
+    private _validadores: ValidadoresService,
+    private _retiroService: RetiroService) { }
 
   ngOnInit() {
 
@@ -21,6 +30,41 @@ export class AtmComponent implements OnInit {
       valorRetiro: [null, [Validators.required, this._validadores.esEntero, this._validadores.multiploDeMil]],
     });
 
+  }
+
+
+
+  retiro() {
+
+    this.reset();
+
+    let valorRetiro = this.formAtm.get('valorRetiro').value;
+
+    this._retiroService.retiroDinero(valorRetiro).subscribe((data: ListDenominacionDTO[]) => {
+      console.log(data)
+      data.forEach(element => {
+        this.billetesEntregados += ` ${element.denominacion} ( ${element.total} ) `;
+      });
+      this.txExitosa = true;
+
+
+
+    }, (err) => {
+      if (err.status == 500) {
+        this.mensajeError = err.error.mensaje;
+        this.errorSaldo = true;
+        console.log(err);
+        console.log(this.mensajeError);
+      }
+    });
+
+  }
+
+
+  reset() {
+    this.mensajeError = '';
+    this.errorSaldo = false;
+    this.txExitosa = false;
   }
 
 }
